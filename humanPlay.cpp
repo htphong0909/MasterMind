@@ -25,6 +25,7 @@ namespace human {
     void play();
     string getPredict();
     int check();
+    void printAttempts();
 
     void play() {
         while (playCount) {
@@ -33,36 +34,20 @@ namespace human {
             if (check() == 1) playCount--;
             if (check() == 2) {
                 system("cls");
-                for (int i = 1; const auto& [inp, feedback] : predictions) {
-                    cout << "----------------Attempt " << i << "----------------\n";
-                    cout << "Your prediction: " << inp << '\n';
-                    cout << "Feedback: " << feedback << '\n';
-                    i++;
-                }
+                printAttempts();
                 cout << "\nYOU WIN!!!!\n";
                 system("pause");
                 return;
             }
         }
         system("cls");
-        for (int i = 1; const auto& [inp, feedback] : predictions) {
-            cout << "----------------Attempt " << i << "----------------\n";
-            cout << "Your prediction: " << inp << '\n';
-            cout << "Feedback: " << feedback << '\n';
-            i++;
-        }
+        printAttempts();
         cout << "\nYOU LOSE!!!!\n";
         system("pause");
     }
 
     string getPredict() {
-        for (int i = 1; const auto& [inp, feedback] : predictions) {
-            cout << "----------------Attempt " << i << "----------------\n";
-            cout << "Your prediction: " << inp << '\n';
-            cout << "Feedback: " << feedback << '\n';
-            i++;
-        }
-        cout << "-------------------------------------------------------------\n";
+        printAttempts();
         cout << "W: white peg\n";
         cout << "B: back peg\n";
         cout << "Play count remaining: " << playCount << '\n';
@@ -82,6 +67,16 @@ namespace human {
         if (predictions.empty() || predictions.back().feedback == "Invalid feedback") return 0;
         if (predictions.back().feedback == "BBBB") return 2;
         return 1;
+    }
+
+    void printAttempts() {
+        for (int i = 1; const auto& [inp, feedback] : predictions) {
+            cout << "----------------Attempt " << i << "----------------\n";
+            cout << "Your prediction: " << inp << '\n';
+            cout << "Feedback: " << feedback << '\n';
+            i++;
+        }
+        cout << "-------------------------------------------------------------\n";
     }
 }
 
