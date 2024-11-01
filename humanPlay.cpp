@@ -59,7 +59,7 @@ namespace human {
 
     prediction::prediction(const string& _inp) {
         inp = _inp;
-        if (!binary_search(possibleCodes.begin(), possibleCodes.end(), inp)) feedback = "Invalid input";
+        if (!binary_search(possibleCodes.begin(), possibleCodes.end(), inp)) feedback = "Invalid feedback";
         else feedback = compareFeedback(inp, hidden);
     }
 
